@@ -1,0 +1,2819 @@
+{
+  "format": "linden-scene",
+  "version": 2,
+  "name": "Main",
+  "settings": {
+    "ambientColor": "#1e1b4b",
+    "ambientIntensity": 0.8,
+    "skybox": "#070a14",
+    "environment": "room",
+    "environmentIntensity": 1,
+    "backgroundBlurriness": 0,
+    "toneMapping": "agx",
+    "exposure": 1.1,
+    "fog": {
+      "enabled": true,
+      "color": "#0c1322",
+      "type": "exp2",
+      "near": 10,
+      "far": 120,
+      "density": 0.015
+    },
+    "shadowQuality": "medium",
+    "sun": {
+      "enabled": true,
+      "color": "#fff4e5",
+      "intensity": 2.5,
+      "direction": [
+        0.5,
+        1,
+        0.35
+      ]
+    },
+    "postFx": {
+      "enabled": true,
+      "ao": true,
+      "aoIntensity": 1,
+      "bloom": false,
+      "bloomStrength": 0.4,
+      "bloomThreshold": 0.9,
+      "bloomRadius": 0.4,
+      "antialias": "smaa"
+    }
+  },
+  "entities": [
+    {
+      "id": "ent-camera-main",
+      "name": "Main Camera",
+      "parentId": null,
+      "active": true,
+      "tags": [
+        "MainCamera"
+      ],
+      "components": [
+        {
+          "type": "Transform",
+          "data": {
+            "position": [
+              0,
+              9,
+              13
+            ],
+            "rotation": [
+              -38,
+              0,
+              0
+            ],
+            "scale": [
+              1,
+              1,
+              1
+            ]
+          }
+        },
+        {
+          "type": "Camera",
+          "data": {
+            "far": 500,
+            "fov": 55,
+            "isActive": true,
+            "near": 0.1
+          }
+        },
+        {
+          "type": "Script",
+          "data": {
+            "src": "scripts/CameraController.ts",
+            "props": {}
+          }
+        }
+      ],
+      "layer": 0,
+      "static": false
+    },
+    {
+      "id": "ent-dir-light",
+      "name": "Moonlight",
+      "parentId": null,
+      "active": true,
+      "tags": [],
+      "components": [
+        {
+          "type": "Transform",
+          "data": {
+            "position": [
+              8,
+              16,
+              10
+            ],
+            "rotation": [
+              50,
+              -30,
+              0
+            ],
+            "scale": [
+              1,
+              1,
+              1
+            ]
+          }
+        },
+        {
+          "type": "Light",
+          "data": {
+            "castShadow": true,
+            "color": "#bfdbfe",
+            "intensity": 2.2,
+            "type": "directional"
+          }
+        }
+      ],
+      "layer": 0,
+      "static": false
+    },
+    {
+      "id": "player",
+      "name": "Moon",
+      "parentId": null,
+      "active": true,
+      "tags": [
+        "Player"
+      ],
+      "components": [
+        {
+          "type": "Transform",
+          "data": {
+            "position": [
+              0,
+              0.05,
+              12
+            ],
+            "rotation": [
+              0,
+              180,
+              0
+            ],
+            "scale": [
+              1,
+              1,
+              1
+            ]
+          }
+        },
+        {
+          "type": "CapsuleCollider",
+          "data": {
+            "height": 1.8,
+            "radius": 0.4
+          }
+        },
+        {
+          "type": "CharacterController",
+          "data": {
+            "skinWidth": 0.08,
+            "slopeLimit": 45,
+            "stepOffset": 0.35
+          }
+        },
+        {
+          "type": "CharacterMovement",
+          "data": {
+            "acceleration": 30,
+            "cameraRelative": true,
+            "deceleration": 35,
+            "gravity": 22,
+            "jumpAction": "Jump",
+            "jumpHeight": 1.4,
+            "maxJumps": 1,
+            "mode": "walk",
+            "moveAction": "Move",
+            "orientToMovement": true,
+            "sprintAction": "Sprint",
+            "sprintSpeed": 8.5,
+            "walkSpeed": 5.5
+          }
+        },
+        {
+          "type": "HtmlUI",
+          "data": {
+            "src": "ui/hud.html",
+            "mode": "screen",
+            "zIndex": 0,
+            "pointerEvents": false,
+            "pixelSize": 0.01
+          }
+        },
+        {
+          "type": "Script",
+          "data": {
+            "src": "scripts/PlayerController.ts",
+            "props": {}
+          }
+        }
+      ],
+      "layer": 0,
+      "static": false
+    },
+    {
+      "id": "overworld-ground",
+      "name": "Plaza Ground",
+      "parentId": null,
+      "active": true,
+      "tags": [
+        "Ground"
+      ],
+      "components": [
+        {
+          "type": "Transform",
+          "data": {
+            "position": [
+              0,
+              -0.1,
+              7
+            ],
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": [
+              24,
+              0.2,
+              20
+            ]
+          }
+        },
+        {
+          "type": "MeshRenderer",
+          "data": {
+            "material": {
+              "color": "#334155",
+              "preset": "stone",
+              "roughness": 0.8
+            },
+            "primitive": "box"
+          }
+        },
+        {
+          "type": "BoxCollider",
+          "data": {
+            "size": {
+              "x": 24,
+              "y": 0.2,
+              "z": 20
+            }
+          }
+        }
+      ],
+      "layer": 0,
+      "static": false
+    },
+    {
+      "id": "wall-back",
+      "name": "Wall Back",
+      "parentId": null,
+      "active": true,
+      "tags": [
+        "Ground"
+      ],
+      "components": [
+        {
+          "type": "Transform",
+          "data": {
+            "position": [
+              0,
+              1.5,
+              17
+            ],
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": [
+              24,
+              3,
+              0.8
+            ]
+          }
+        },
+        {
+          "type": "MeshRenderer",
+          "data": {
+            "material": {
+              "color": "#1e293b",
+              "preset": "stone"
+            },
+            "primitive": "box"
+          }
+        },
+        {
+          "type": "BoxCollider",
+          "data": {
+            "size": {
+              "x": 24,
+              "y": 3,
+              "z": 0.8
+            }
+          }
+        }
+      ],
+      "layer": 0,
+      "static": false
+    },
+    {
+      "id": "wall-left",
+      "name": "Wall Left",
+      "parentId": null,
+      "active": true,
+      "tags": [
+        "Ground"
+      ],
+      "components": [
+        {
+          "type": "Transform",
+          "data": {
+            "position": [
+              -12,
+              1.5,
+              7
+            ],
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": [
+              0.8,
+              3,
+              20
+            ]
+          }
+        },
+        {
+          "type": "MeshRenderer",
+          "data": {
+            "material": {
+              "color": "#1e293b",
+              "preset": "stone"
+            },
+            "primitive": "box"
+          }
+        },
+        {
+          "type": "BoxCollider",
+          "data": {
+            "size": {
+              "x": 0.8,
+              "y": 3,
+              "z": 20
+            }
+          }
+        }
+      ],
+      "layer": 0,
+      "static": false
+    },
+    {
+      "id": "wall-right",
+      "name": "Wall Right",
+      "parentId": null,
+      "active": true,
+      "tags": [
+        "Ground"
+      ],
+      "components": [
+        {
+          "type": "Transform",
+          "data": {
+            "position": [
+              12,
+              1.5,
+              7
+            ],
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": [
+              0.8,
+              3,
+              20
+            ]
+          }
+        },
+        {
+          "type": "MeshRenderer",
+          "data": {
+            "material": {
+              "color": "#1e293b",
+              "preset": "stone"
+            },
+            "primitive": "box"
+          }
+        },
+        {
+          "type": "BoxCollider",
+          "data": {
+            "size": {
+              "x": 0.8,
+              "y": 3,
+              "z": 20
+            }
+          }
+        }
+      ],
+      "layer": 0,
+      "static": false
+    },
+    {
+      "id": "pillar-1",
+      "name": "Pillar NW",
+      "parentId": null,
+      "active": true,
+      "tags": [
+        "Ground"
+      ],
+      "components": [
+        {
+          "type": "Transform",
+          "data": {
+            "position": [
+              -6,
+              2,
+              2
+            ],
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": [
+              0.9,
+              4,
+              0.9
+            ]
+          }
+        },
+        {
+          "type": "MeshRenderer",
+          "data": {
+            "material": {
+              "color": "#475569",
+              "preset": "stone"
+            },
+            "primitive": "cylinder"
+          }
+        },
+        {
+          "type": "BoxCollider",
+          "data": {
+            "size": {
+              "x": 0.9,
+              "y": 4,
+              "z": 0.9
+            }
+          }
+        }
+      ],
+      "layer": 0,
+      "static": false
+    },
+    {
+      "id": "pillar-2",
+      "name": "Pillar NE",
+      "parentId": null,
+      "active": true,
+      "tags": [
+        "Ground"
+      ],
+      "components": [
+        {
+          "type": "Transform",
+          "data": {
+            "position": [
+              6,
+              2,
+              2
+            ],
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": [
+              0.9,
+              4,
+              0.9
+            ]
+          }
+        },
+        {
+          "type": "MeshRenderer",
+          "data": {
+            "material": {
+              "color": "#475569",
+              "preset": "stone"
+            },
+            "primitive": "cylinder"
+          }
+        },
+        {
+          "type": "BoxCollider",
+          "data": {
+            "size": {
+              "x": 0.9,
+              "y": 4,
+              "z": 0.9
+            }
+          }
+        }
+      ],
+      "layer": 0,
+      "static": false
+    },
+    {
+      "id": "pillar-3",
+      "name": "Pillar SW",
+      "parentId": null,
+      "active": true,
+      "tags": [
+        "Ground"
+      ],
+      "components": [
+        {
+          "type": "Transform",
+          "data": {
+            "position": [
+              -6,
+              2,
+              12
+            ],
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": [
+              0.9,
+              4,
+              0.9
+            ]
+          }
+        },
+        {
+          "type": "MeshRenderer",
+          "data": {
+            "material": {
+              "color": "#475569",
+              "preset": "stone"
+            },
+            "primitive": "cylinder"
+          }
+        },
+        {
+          "type": "BoxCollider",
+          "data": {
+            "size": {
+              "x": 0.9,
+              "y": 4,
+              "z": 0.9
+            }
+          }
+        }
+      ],
+      "layer": 0,
+      "static": false
+    },
+    {
+      "id": "pillar-4",
+      "name": "Pillar SE",
+      "parentId": null,
+      "active": true,
+      "tags": [
+        "Ground"
+      ],
+      "components": [
+        {
+          "type": "Transform",
+          "data": {
+            "position": [
+              6,
+              2,
+              12
+            ],
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": [
+              0.9,
+              4,
+              0.9
+            ]
+          }
+        },
+        {
+          "type": "MeshRenderer",
+          "data": {
+            "material": {
+              "color": "#475569",
+              "preset": "stone"
+            },
+            "primitive": "cylinder"
+          }
+        },
+        {
+          "type": "BoxCollider",
+          "data": {
+            "size": {
+              "x": 0.9,
+              "y": 4,
+              "z": 0.9
+            }
+          }
+        }
+      ],
+      "layer": 0,
+      "static": false
+    },
+    {
+      "id": "npc-pip",
+      "name": "Pip",
+      "parentId": null,
+      "active": true,
+      "tags": [
+        "NPC",
+        "Interactable"
+      ],
+      "components": [
+        {
+          "type": "Transform",
+          "data": {
+            "position": [
+              1.8,
+              1.1,
+              10.5
+            ],
+            "rotation": [
+              0,
+              -30,
+              0
+            ],
+            "scale": [
+              0.4,
+              0.4,
+              0.4
+            ]
+          }
+        },
+        {
+          "type": "MeshRenderer",
+          "data": {
+            "material": {
+              "color": "#fef08a",
+              "emissive": "#eab308",
+              "emissiveIntensity": 1.5,
+              "preset": "emissive_light"
+            },
+            "primitive": "sphere"
+          }
+        },
+        {
+          "type": "SphereCollider",
+          "data": {
+            "isTrigger": true,
+            "radius": 0.8
+          }
+        }
+      ],
+      "layer": 0,
+      "static": false
+    },
+    {
+      "id": "puzzle-lever",
+      "name": "Moon Lever",
+      "parentId": null,
+      "active": true,
+      "tags": [
+        "Lever",
+        "TailTrigger"
+      ],
+      "components": [
+        {
+          "type": "Transform",
+          "data": {
+            "position": [
+              -4,
+              0.6,
+              6
+            ],
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": [
+              0.4,
+              1.2,
+              0.4
+            ]
+          }
+        },
+        {
+          "type": "MeshRenderer",
+          "data": {
+            "material": {
+              "color": "#64748b",
+              "preset": "stone"
+            },
+            "primitive": "cylinder"
+          }
+        },
+        {
+          "type": "BoxCollider",
+          "data": {
+            "isTrigger": true,
+            "size": {
+              "x": 0.8,
+              "y": 1.2,
+              "z": 0.8
+            }
+          }
+        }
+      ],
+      "layer": 0,
+      "static": false
+    },
+    {
+      "id": "puzzle-brazier",
+      "name": "Moon Brazier",
+      "parentId": null,
+      "active": true,
+      "tags": [
+        "Brazier",
+        "BreathTrigger"
+      ],
+      "components": [
+        {
+          "type": "Transform",
+          "data": {
+            "position": [
+              4,
+              0.7,
+              6
+            ],
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": [
+              0.6,
+              1.4,
+              0.6
+            ]
+          }
+        },
+        {
+          "type": "MeshRenderer",
+          "data": {
+            "material": {
+              "color": "#3b82f6",
+              "preset": "stone"
+            },
+            "primitive": "cylinder"
+          }
+        },
+        {
+          "type": "BoxCollider",
+          "data": {
+            "isTrigger": true,
+            "size": {
+              "x": 1,
+              "y": 1.4,
+              "z": 1
+            }
+          }
+        }
+      ],
+      "layer": 0,
+      "static": false
+    },
+    {
+      "id": "puzzle-plate",
+      "name": "Pressure Plate",
+      "parentId": null,
+      "active": true,
+      "tags": [
+        "PressurePlate"
+      ],
+      "components": [
+        {
+          "type": "Transform",
+          "data": {
+            "position": [
+              0,
+              0.05,
+              5
+            ],
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": [
+              1.6,
+              0.1,
+              1.6
+            ]
+          }
+        },
+        {
+          "type": "MeshRenderer",
+          "data": {
+            "material": {
+              "color": "#94a3b8",
+              "preset": "stone"
+            },
+            "primitive": "cylinder"
+          }
+        },
+        {
+          "type": "BoxCollider",
+          "data": {
+            "isTrigger": true,
+            "size": {
+              "x": 1.6,
+              "y": 0.3,
+              "z": 1.6
+            }
+          }
+        }
+      ],
+      "layer": 0,
+      "static": false
+    },
+    {
+      "id": "gate-post-l",
+      "name": "Gate Post Left",
+      "parentId": null,
+      "active": true,
+      "tags": [
+        "Ground"
+      ],
+      "components": [
+        {
+          "type": "Transform",
+          "data": {
+            "position": [
+              -3,
+              2.5,
+              -2
+            ],
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": [
+              1,
+              5,
+              1.2
+            ]
+          }
+        },
+        {
+          "type": "MeshRenderer",
+          "data": {
+            "material": {
+              "color": "#1e1b4b",
+              "preset": "stone"
+            },
+            "primitive": "box"
+          }
+        },
+        {
+          "type": "BoxCollider",
+          "data": {
+            "size": {
+              "x": 1,
+              "y": 5,
+              "z": 1.2
+            }
+          }
+        }
+      ],
+      "layer": 0,
+      "static": false
+    },
+    {
+      "id": "gate-post-r",
+      "name": "Gate Post Right",
+      "parentId": null,
+      "active": true,
+      "tags": [
+        "Ground"
+      ],
+      "components": [
+        {
+          "type": "Transform",
+          "data": {
+            "position": [
+              3,
+              2.5,
+              -2
+            ],
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": [
+              1,
+              5,
+              1.2
+            ]
+          }
+        },
+        {
+          "type": "MeshRenderer",
+          "data": {
+            "material": {
+              "color": "#1e1b4b",
+              "preset": "stone"
+            },
+            "primitive": "box"
+          }
+        },
+        {
+          "type": "BoxCollider",
+          "data": {
+            "size": {
+              "x": 1,
+              "y": 5,
+              "z": 1.2
+            }
+          }
+        }
+      ],
+      "layer": 0,
+      "static": false
+    },
+    {
+      "id": "gate-arch",
+      "name": "Gate Arch Top",
+      "parentId": null,
+      "active": true,
+      "tags": [
+        "Ground"
+      ],
+      "components": [
+        {
+          "type": "Transform",
+          "data": {
+            "position": [
+              0,
+              4.6,
+              -2
+            ],
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": [
+              7,
+              0.8,
+              1.2
+            ]
+          }
+        },
+        {
+          "type": "MeshRenderer",
+          "data": {
+            "material": {
+              "color": "#1e1b4b",
+              "preset": "stone"
+            },
+            "primitive": "box"
+          }
+        },
+        {
+          "type": "BoxCollider",
+          "data": {
+            "size": {
+              "x": 7,
+              "y": 0.8,
+              "z": 1.2
+            }
+          }
+        }
+      ],
+      "layer": 0,
+      "static": false
+    },
+    {
+      "id": "wall-front-l",
+      "name": "Wall Front Left",
+      "parentId": null,
+      "active": true,
+      "tags": [
+        "Ground"
+      ],
+      "components": [
+        {
+          "type": "Transform",
+          "data": {
+            "position": [
+              -7.5,
+              1.5,
+              -2
+            ],
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": [
+              8,
+              3,
+              0.8
+            ]
+          }
+        },
+        {
+          "type": "MeshRenderer",
+          "data": {
+            "material": {
+              "color": "#1e293b",
+              "preset": "stone"
+            },
+            "primitive": "box"
+          }
+        },
+        {
+          "type": "BoxCollider",
+          "data": {
+            "size": {
+              "x": 8,
+              "y": 3,
+              "z": 0.8
+            }
+          }
+        }
+      ],
+      "layer": 0,
+      "static": false
+    },
+    {
+      "id": "wall-front-r",
+      "name": "Wall Front Right",
+      "parentId": null,
+      "active": true,
+      "tags": [
+        "Ground"
+      ],
+      "components": [
+        {
+          "type": "Transform",
+          "data": {
+            "position": [
+              7.5,
+              1.5,
+              -2
+            ],
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": [
+              8,
+              3,
+              0.8
+            ]
+          }
+        },
+        {
+          "type": "MeshRenderer",
+          "data": {
+            "material": {
+              "color": "#1e293b",
+              "preset": "stone"
+            },
+            "primitive": "box"
+          }
+        },
+        {
+          "type": "BoxCollider",
+          "data": {
+            "size": {
+              "x": 8,
+              "y": 3,
+              "z": 0.8
+            }
+          }
+        }
+      ],
+      "layer": 0,
+      "static": false
+    },
+    {
+      "id": "gate-door",
+      "name": "Gate Barrier",
+      "parentId": null,
+      "active": true,
+      "tags": [
+        "GateDoor"
+      ],
+      "components": [
+        {
+          "type": "Transform",
+          "data": {
+            "position": [
+              0,
+              2,
+              -2
+            ],
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": [
+              5,
+              4,
+              0.3
+            ]
+          }
+        },
+        {
+          "type": "MeshRenderer",
+          "data": {
+            "material": {
+              "color": "#38bdf8",
+              "emissive": "#0284c7",
+              "emissiveIntensity": 0.8,
+              "opacity": 0.7,
+              "preset": "glass_frosted"
+            },
+            "primitive": "box"
+          }
+        },
+        {
+          "type": "BoxCollider",
+          "data": {
+            "size": {
+              "x": 5,
+              "y": 4,
+              "z": 0.3
+            }
+          }
+        },
+        {
+          "type": "Script",
+          "data": {
+            "src": "scripts/PuzzleManager.ts",
+            "props": {}
+          }
+        }
+      ],
+      "layer": 0,
+      "static": false
+    },
+    {
+      "id": "cave-ground",
+      "name": "Cave Floor",
+      "parentId": null,
+      "active": true,
+      "tags": [
+        "Ground"
+      ],
+      "components": [
+        {
+          "type": "Transform",
+          "data": {
+            "position": [
+              0,
+              -0.1,
+              -14
+            ],
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": [
+              18,
+              0.2,
+              22
+            ]
+          }
+        },
+        {
+          "type": "MeshRenderer",
+          "data": {
+            "material": {
+              "color": "#0f172a",
+              "preset": "stone",
+              "roughness": 0.9
+            },
+            "primitive": "box"
+          }
+        },
+        {
+          "type": "BoxCollider",
+          "data": {
+            "size": {
+              "x": 18,
+              "y": 0.2,
+              "z": 22
+            }
+          }
+        }
+      ],
+      "layer": 0,
+      "static": false
+    },
+    {
+      "id": "cave-wall-l",
+      "name": "Cave Wall Left",
+      "parentId": null,
+      "active": true,
+      "tags": [
+        "Ground"
+      ],
+      "components": [
+        {
+          "type": "Transform",
+          "data": {
+            "position": [
+              -9,
+              2,
+              -14
+            ],
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": [
+              0.8,
+              4,
+              22
+            ]
+          }
+        },
+        {
+          "type": "MeshRenderer",
+          "data": {
+            "material": {
+              "color": "#090d16",
+              "preset": "stone"
+            },
+            "primitive": "box"
+          }
+        },
+        {
+          "type": "BoxCollider",
+          "data": {
+            "size": {
+              "x": 0.8,
+              "y": 4,
+              "z": 22
+            }
+          }
+        }
+      ],
+      "layer": 0,
+      "static": false
+    },
+    {
+      "id": "cave-wall-r",
+      "name": "Cave Wall Right",
+      "parentId": null,
+      "active": true,
+      "tags": [
+        "Ground"
+      ],
+      "components": [
+        {
+          "type": "Transform",
+          "data": {
+            "position": [
+              9,
+              2,
+              -14
+            ],
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": [
+              0.8,
+              4,
+              22
+            ]
+          }
+        },
+        {
+          "type": "MeshRenderer",
+          "data": {
+            "material": {
+              "color": "#090d16",
+              "preset": "stone"
+            },
+            "primitive": "box"
+          }
+        },
+        {
+          "type": "BoxCollider",
+          "data": {
+            "size": {
+              "x": 0.8,
+              "y": 4,
+              "z": 22
+            }
+          }
+        }
+      ],
+      "layer": 0,
+      "static": false
+    },
+    {
+      "id": "cave-wall-back",
+      "name": "Cave Wall Back",
+      "parentId": null,
+      "active": true,
+      "tags": [
+        "Ground"
+      ],
+      "components": [
+        {
+          "type": "Transform",
+          "data": {
+            "position": [
+              0,
+              2,
+              -25
+            ],
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": [
+              18,
+              4,
+              0.8
+            ]
+          }
+        },
+        {
+          "type": "MeshRenderer",
+          "data": {
+            "material": {
+              "color": "#090d16",
+              "preset": "stone"
+            },
+            "primitive": "box"
+          }
+        },
+        {
+          "type": "BoxCollider",
+          "data": {
+            "size": {
+              "x": 18,
+              "y": 4,
+              "z": 0.8
+            }
+          }
+        }
+      ],
+      "layer": 0,
+      "static": false
+    },
+    {
+      "id": "cave-crystal-1",
+      "name": "Cave Crystal L",
+      "parentId": null,
+      "active": true,
+      "tags": [
+        "CrystalLight"
+      ],
+      "components": [
+        {
+          "type": "Transform",
+          "data": {
+            "position": [
+              -7,
+              1.2,
+              -8
+            ],
+            "rotation": [
+              15,
+              20,
+              10
+            ],
+            "scale": [
+              0.6,
+              2.2,
+              0.6
+            ]
+          }
+        },
+        {
+          "type": "MeshRenderer",
+          "data": {
+            "material": {
+              "color": "#818cf8",
+              "emissive": "#4f46e5",
+              "emissiveIntensity": 1.8,
+              "preset": "glass_frosted"
+            },
+            "primitive": "cone"
+          }
+        }
+      ],
+      "layer": 0,
+      "static": false
+    },
+    {
+      "id": "cave-crystal-2",
+      "name": "Cave Crystal R",
+      "parentId": null,
+      "active": true,
+      "tags": [
+        "CrystalLight"
+      ],
+      "components": [
+        {
+          "type": "Transform",
+          "data": {
+            "position": [
+              7,
+              1.2,
+              -8
+            ],
+            "rotation": [
+              10,
+              -25,
+              -15
+            ],
+            "scale": [
+              0.6,
+              2.2,
+              0.6
+            ]
+          }
+        },
+        {
+          "type": "MeshRenderer",
+          "data": {
+            "material": {
+              "color": "#818cf8",
+              "emissive": "#4f46e5",
+              "emissiveIntensity": 1.8,
+              "preset": "glass_frosted"
+            },
+            "primitive": "cone"
+          }
+        }
+      ],
+      "layer": 0,
+      "static": false
+    },
+    {
+      "id": "cave-crystal-3",
+      "name": "Cave Crystal Deep L",
+      "parentId": null,
+      "active": true,
+      "tags": [
+        "CrystalLight"
+      ],
+      "components": [
+        {
+          "type": "Transform",
+          "data": {
+            "position": [
+              -7,
+              1.2,
+              -18
+            ],
+            "rotation": [
+              -15,
+              30,
+              20
+            ],
+            "scale": [
+              0.7,
+              2.4,
+              0.7
+            ]
+          }
+        },
+        {
+          "type": "MeshRenderer",
+          "data": {
+            "material": {
+              "color": "#38bdf8",
+              "emissive": "#0284c7",
+              "emissiveIntensity": 2,
+              "preset": "glass_frosted"
+            },
+            "primitive": "cone"
+          }
+        }
+      ],
+      "layer": 0,
+      "static": false
+    },
+    {
+      "id": "cave-crystal-4",
+      "name": "Cave Crystal Deep R",
+      "parentId": null,
+      "active": true,
+      "tags": [
+        "CrystalLight"
+      ],
+      "components": [
+        {
+          "type": "Transform",
+          "data": {
+            "position": [
+              7,
+              1.2,
+              -18
+            ],
+            "rotation": [
+              -10,
+              -30,
+              -20
+            ],
+            "scale": [
+              0.7,
+              2.4,
+              0.7
+            ]
+          }
+        },
+        {
+          "type": "MeshRenderer",
+          "data": {
+            "material": {
+              "color": "#38bdf8",
+              "emissive": "#0284c7",
+              "emissiveIntensity": 2,
+              "preset": "glass_frosted"
+            },
+            "primitive": "cone"
+          }
+        }
+      ],
+      "layer": 0,
+      "static": false
+    },
+    {
+      "id": "enemy-slime-1",
+      "name": "Lendir Bayangan A",
+      "parentId": null,
+      "active": true,
+      "tags": [
+        "Enemy",
+        "ShadowSlime"
+      ],
+      "components": [
+        {
+          "type": "Transform",
+          "data": {
+            "position": [
+              -3,
+              0.5,
+              -8
+            ],
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": [
+              0.9,
+              0.8,
+              0.9
+            ]
+          }
+        },
+        {
+          "type": "MeshRenderer",
+          "data": {
+            "material": {
+              "color": "#1e1b4b",
+              "emissive": "#4338ca",
+              "emissiveIntensity": 0.6,
+              "preset": "plastic_glossy"
+            },
+            "primitive": "sphere"
+          }
+        },
+        {
+          "type": "SphereCollider",
+          "data": {
+            "isTrigger": true,
+            "radius": 0.6
+          }
+        },
+        {
+          "type": "Script",
+          "data": {
+            "src": "scripts/EnemyController.ts",
+            "props": {
+              "hp": 2,
+              "speed": 2.2,
+              "damage": 1,
+              "isBoss": false
+            }
+          }
+        }
+      ],
+      "layer": 0,
+      "static": false
+    },
+    {
+      "id": "enemy-slime-2",
+      "name": "Lendir Bayangan B",
+      "parentId": null,
+      "active": true,
+      "tags": [
+        "Enemy",
+        "ShadowSlime"
+      ],
+      "components": [
+        {
+          "type": "Transform",
+          "data": {
+            "position": [
+              3,
+              0.5,
+              -12
+            ],
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": [
+              0.9,
+              0.8,
+              0.9
+            ]
+          }
+        },
+        {
+          "type": "MeshRenderer",
+          "data": {
+            "material": {
+              "color": "#1e1b4b",
+              "emissive": "#4338ca",
+              "emissiveIntensity": 0.6,
+              "preset": "plastic_glossy"
+            },
+            "primitive": "sphere"
+          }
+        },
+        {
+          "type": "SphereCollider",
+          "data": {
+            "isTrigger": true,
+            "radius": 0.6
+          }
+        },
+        {
+          "type": "Script",
+          "data": {
+            "src": "scripts/EnemyController.ts",
+            "props": {
+              "hp": 2,
+              "speed": 2.2,
+              "damage": 1,
+              "isBoss": false
+            }
+          }
+        }
+      ],
+      "layer": 0,
+      "static": false
+    },
+    {
+      "id": "enemy-wolf-boss",
+      "name": "Serigala Bayangan",
+      "parentId": null,
+      "active": true,
+      "tags": [
+        "Enemy",
+        "ShadowWolf",
+        "Boss"
+      ],
+      "components": [
+        {
+          "type": "Transform",
+          "data": {
+            "position": [
+              0,
+              0.8,
+              -16
+            ],
+            "rotation": [
+              0,
+              180,
+              0
+            ],
+            "scale": [
+              1.2,
+              1.2,
+              1.8
+            ]
+          }
+        },
+        {
+          "type": "MeshRenderer",
+          "data": {
+            "material": {
+              "color": "#0f172a",
+              "preset": "leather",
+              "roughness": 0.5
+            },
+            "primitive": "box"
+          }
+        },
+        {
+          "type": "BoxCollider",
+          "data": {
+            "isTrigger": true,
+            "size": {
+              "x": 1.4,
+              "y": 1.4,
+              "z": 2
+            }
+          }
+        },
+        {
+          "type": "Script",
+          "data": {
+            "src": "scripts/EnemyController.ts",
+            "props": {
+              "hp": 6,
+              "speed": 3,
+              "damage": 2,
+              "isBoss": true,
+              "aggroDist": 10
+            }
+          }
+        }
+      ],
+      "layer": 0,
+      "static": false
+    },
+    {
+      "id": "secret-wall",
+      "name": "Dinding Retak",
+      "parentId": null,
+      "active": true,
+      "tags": [
+        "SecretWall",
+        "Breakable"
+      ],
+      "components": [
+        {
+          "type": "Transform",
+          "data": {
+            "position": [
+              -8.8,
+              1.5,
+              -14
+            ],
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": [
+              0.6,
+              3,
+              2.5
+            ]
+          }
+        },
+        {
+          "type": "MeshRenderer",
+          "data": {
+            "material": {
+              "color": "#475569",
+              "preset": "stone"
+            },
+            "primitive": "box"
+          }
+        },
+        {
+          "type": "BoxCollider",
+          "data": {
+            "size": {
+              "x": 0.8,
+              "y": 3,
+              "z": 2.5
+            }
+          }
+        }
+      ],
+      "layer": 0,
+      "static": false
+    },
+    {
+      "id": "secret-heart",
+      "name": "Kepingan Sisik Hati",
+      "parentId": null,
+      "active": true,
+      "tags": [
+        "HeartScale",
+        "Collectible"
+      ],
+      "components": [
+        {
+          "type": "Transform",
+          "data": {
+            "position": [
+              -10.5,
+              1,
+              -14
+            ],
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": [
+              0.5,
+              0.5,
+              0.5
+            ]
+          }
+        },
+        {
+          "type": "MeshRenderer",
+          "data": {
+            "material": {
+              "color": "#f43f5e",
+              "emissive": "#e11d48",
+              "emissiveIntensity": 2,
+              "preset": "glass_frosted"
+            },
+            "primitive": "sphere"
+          }
+        },
+        {
+          "type": "SphereCollider",
+          "data": {
+            "isTrigger": true,
+            "radius": 0.6
+          }
+        },
+        {
+          "type": "Script",
+          "data": {
+            "src": "scripts/Collectible.ts",
+            "props": {
+              "kind": "heart",
+              "pickupDistance": 1.4
+            }
+          }
+        }
+      ],
+      "layer": 0,
+      "static": false
+    },
+    {
+      "id": "pedestal-base",
+      "name": "Altar Pecahan Bulan",
+      "parentId": null,
+      "active": true,
+      "tags": [
+        "Ground"
+      ],
+      "components": [
+        {
+          "type": "Transform",
+          "data": {
+            "position": [
+              0,
+              0.4,
+              -22
+            ],
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": [
+              3,
+              0.8,
+              3
+            ]
+          }
+        },
+        {
+          "type": "MeshRenderer",
+          "data": {
+            "material": {
+              "color": "#e2e8f0",
+              "preset": "marble"
+            },
+            "primitive": "cylinder"
+          }
+        },
+        {
+          "type": "BoxCollider",
+          "data": {
+            "size": {
+              "x": 3,
+              "y": 0.8,
+              "z": 3
+            }
+          }
+        }
+      ],
+      "layer": 0,
+      "static": false
+    },
+    {
+      "id": "moon-shard",
+      "name": "Pecahan Bulan",
+      "parentId": null,
+      "active": true,
+      "tags": [
+        "MoonShard",
+        "Interactable"
+      ],
+      "components": [
+        {
+          "type": "Transform",
+          "data": {
+            "position": [
+              0,
+              1.7,
+              -22
+            ],
+            "rotation": [
+              0,
+              0,
+              45
+            ],
+            "scale": [
+              0.8,
+              0.8,
+              0.8
+            ]
+          }
+        },
+        {
+          "type": "MeshRenderer",
+          "data": {
+            "material": {
+              "color": "#38bdf8",
+              "emissive": "#38bdf8",
+              "emissiveIntensity": 2.5,
+              "preset": "glass_clear"
+            },
+            "primitive": "torus"
+          }
+        },
+        {
+          "type": "SphereCollider",
+          "data": {
+            "isTrigger": true,
+            "radius": 1.2
+          }
+        },
+        {
+          "type": "Script",
+          "data": {
+            "src": "scripts/Collectible.ts",
+            "props": {
+              "kind": "moon_shard",
+              "pickupDistance": 1.8
+            }
+          }
+        }
+      ],
+      "layer": 0,
+      "static": false
+    },
+    {
+      "id": "star-crystal-1",
+      "name": "Kristal Bintang 1",
+      "parentId": null,
+      "active": true,
+      "tags": [
+        "StarCrystal",
+        "Collectible"
+      ],
+      "components": [
+        {
+          "type": "Transform",
+          "data": {
+            "position": [
+              -5,
+              0.9,
+              10
+            ],
+            "rotation": [
+              0,
+              0,
+              45
+            ],
+            "scale": [
+              0.45,
+              0.45,
+              0.45
+            ]
+          }
+        },
+        {
+          "type": "MeshRenderer",
+          "data": {
+            "material": {
+              "color": "#facc15",
+              "emissive": "#eab308",
+              "emissiveIntensity": 1.8,
+              "preset": "glass_frosted"
+            },
+            "primitive": "cone"
+          }
+        },
+        {
+          "type": "SphereCollider",
+          "data": {
+            "isTrigger": true,
+            "radius": 0.6
+          }
+        },
+        {
+          "type": "Script",
+          "data": {
+            "src": "scripts/Collectible.ts",
+            "props": {
+              "kind": "crystal",
+              "pickupDistance": 1.4
+            }
+          }
+        }
+      ],
+      "layer": 0,
+      "static": false
+    },
+    {
+      "id": "star-crystal-2",
+      "name": "Kristal Bintang 2",
+      "parentId": null,
+      "active": true,
+      "tags": [
+        "StarCrystal",
+        "Collectible"
+      ],
+      "components": [
+        {
+          "type": "Transform",
+          "data": {
+            "position": [
+              5,
+              0.9,
+              10
+            ],
+            "rotation": [
+              0,
+              0,
+              45
+            ],
+            "scale": [
+              0.45,
+              0.45,
+              0.45
+            ]
+          }
+        },
+        {
+          "type": "MeshRenderer",
+          "data": {
+            "material": {
+              "color": "#facc15",
+              "emissive": "#eab308",
+              "emissiveIntensity": 1.8,
+              "preset": "glass_frosted"
+            },
+            "primitive": "cone"
+          }
+        },
+        {
+          "type": "SphereCollider",
+          "data": {
+            "isTrigger": true,
+            "radius": 0.6
+          }
+        },
+        {
+          "type": "Script",
+          "data": {
+            "src": "scripts/Collectible.ts",
+            "props": {
+              "kind": "crystal",
+              "pickupDistance": 1.4
+            }
+          }
+        }
+      ],
+      "layer": 0,
+      "static": false
+    },
+    {
+      "id": "star-crystal-3",
+      "name": "Kristal Bintang 3",
+      "parentId": null,
+      "active": true,
+      "tags": [
+        "StarCrystal",
+        "Collectible"
+      ],
+      "components": [
+        {
+          "type": "Transform",
+          "data": {
+            "position": [
+              -7,
+              0.9,
+              3
+            ],
+            "rotation": [
+              0,
+              0,
+              45
+            ],
+            "scale": [
+              0.45,
+              0.45,
+              0.45
+            ]
+          }
+        },
+        {
+          "type": "MeshRenderer",
+          "data": {
+            "material": {
+              "color": "#facc15",
+              "emissive": "#eab308",
+              "emissiveIntensity": 1.8,
+              "preset": "glass_frosted"
+            },
+            "primitive": "cone"
+          }
+        },
+        {
+          "type": "SphereCollider",
+          "data": {
+            "isTrigger": true,
+            "radius": 0.6
+          }
+        },
+        {
+          "type": "Script",
+          "data": {
+            "src": "scripts/Collectible.ts",
+            "props": {
+              "kind": "crystal",
+              "pickupDistance": 1.4
+            }
+          }
+        }
+      ],
+      "layer": 0,
+      "static": false
+    },
+    {
+      "id": "star-crystal-4",
+      "name": "Kristal Bintang 4",
+      "parentId": null,
+      "active": true,
+      "tags": [
+        "StarCrystal",
+        "Collectible"
+      ],
+      "components": [
+        {
+          "type": "Transform",
+          "data": {
+            "position": [
+              7,
+              0.9,
+              3
+            ],
+            "rotation": [
+              0,
+              0,
+              45
+            ],
+            "scale": [
+              0.45,
+              0.45,
+              0.45
+            ]
+          }
+        },
+        {
+          "type": "MeshRenderer",
+          "data": {
+            "material": {
+              "color": "#facc15",
+              "emissive": "#eab308",
+              "emissiveIntensity": 1.8,
+              "preset": "glass_frosted"
+            },
+            "primitive": "cone"
+          }
+        },
+        {
+          "type": "SphereCollider",
+          "data": {
+            "isTrigger": true,
+            "radius": 0.6
+          }
+        },
+        {
+          "type": "Script",
+          "data": {
+            "src": "scripts/Collectible.ts",
+            "props": {
+              "kind": "crystal",
+              "pickupDistance": 1.4
+            }
+          }
+        }
+      ],
+      "layer": 0,
+      "static": false
+    },
+    {
+      "id": "star-crystal-5",
+      "name": "Kristal Bintang 5",
+      "parentId": null,
+      "active": true,
+      "tags": [
+        "StarCrystal",
+        "Collectible"
+      ],
+      "components": [
+        {
+          "type": "Transform",
+          "data": {
+            "position": [
+              0,
+              0.9,
+              2
+            ],
+            "rotation": [
+              0,
+              0,
+              45
+            ],
+            "scale": [
+              0.45,
+              0.45,
+              0.45
+            ]
+          }
+        },
+        {
+          "type": "MeshRenderer",
+          "data": {
+            "material": {
+              "color": "#facc15",
+              "emissive": "#eab308",
+              "emissiveIntensity": 1.8,
+              "preset": "glass_frosted"
+            },
+            "primitive": "cone"
+          }
+        },
+        {
+          "type": "SphereCollider",
+          "data": {
+            "isTrigger": true,
+            "radius": 0.6
+          }
+        },
+        {
+          "type": "Script",
+          "data": {
+            "src": "scripts/Collectible.ts",
+            "props": {
+              "kind": "crystal",
+              "pickupDistance": 1.4
+            }
+          }
+        }
+      ],
+      "layer": 0,
+      "static": false
+    },
+    {
+      "id": "player-visual",
+      "name": "MoonVisual",
+      "parentId": "player",
+      "active": true,
+      "tags": [],
+      "components": [
+        {
+          "type": "Transform",
+          "data": {
+            "position": [
+              0,
+              0,
+              0
+            ],
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": [
+              1,
+              1,
+              1
+            ]
+          }
+        },
+        {
+          "type": "Model",
+          "data": {
+            "collider": "none",
+            "merge": true,
+            "parts": [
+              {
+                "id": "hips",
+                "material": {
+                  "color": "#1e293b",
+                  "preset": "fabric_cotton"
+                },
+                "name": "Hips",
+                "position": [
+                  0,
+                  0.85,
+                  0
+                ],
+                "shape": {
+                  "radius": 0.04,
+                  "size": [
+                    0.32,
+                    0.2,
+                    0.22
+                  ],
+                  "type": "roundedBox"
+                }
+              },
+              {
+                "attachTo": "hips",
+                "id": "torso",
+                "material": {
+                  "color": "#1e3a8a",
+                  "preset": "fabric_cotton"
+                },
+                "name": "Torso",
+                "position": [
+                  0,
+                  1.13,
+                  0
+                ],
+                "shape": {
+                  "radius": 0.05,
+                  "size": [
+                    0.34,
+                    0.4,
+                    0.2
+                  ],
+                  "type": "roundedBox"
+                }
+              },
+              {
+                "allowOverlap": true,
+                "attachTo": "torso",
+                "id": "belt",
+                "material": {
+                  "color": "#f59e0b",
+                  "preset": "metal_gold"
+                },
+                "name": "Belt",
+                "position": [
+                  0,
+                  0.96,
+                  0
+                ],
+                "shape": {
+                  "radius": 0.02,
+                  "size": [
+                    0.36,
+                    0.07,
+                    0.22
+                  ],
+                  "type": "roundedBox"
+                }
+              },
+              {
+                "allowOverlap": true,
+                "attachTo": "torso",
+                "id": "scarf",
+                "material": {
+                  "color": "#0284c7",
+                  "preset": "fabric_cotton"
+                },
+                "name": "Scarf",
+                "position": [
+                  0,
+                  1.34,
+                  0
+                ],
+                "rotation": [
+                  10,
+                  0,
+                  0
+                ],
+                "shape": {
+                  "radius": 0.14,
+                  "tube": 0.04,
+                  "type": "torus"
+                }
+              },
+              {
+                "attachTo": "torso",
+                "id": "head",
+                "material": {
+                  "color": "#fed7aa",
+                  "preset": "plastic_matte"
+                },
+                "name": "Head",
+                "position": [
+                  0,
+                  1.48,
+                  0
+                ],
+                "shape": {
+                  "radius": 0.15,
+                  "type": "sphere"
+                }
+              },
+              {
+                "allowOverlap": true,
+                "attachTo": "head",
+                "id": "hair_top",
+                "material": {
+                  "color": "#cbd5e1",
+                  "preset": "plastic_matte"
+                },
+                "name": "HairTop",
+                "position": [
+                  0,
+                  1.52,
+                  -0.02
+                ],
+                "shape": {
+                  "radius": 0.17,
+                  "type": "sphere"
+                }
+              },
+              {
+                "allowOverlap": true,
+                "attachTo": "hair_top",
+                "id": "hair_back",
+                "material": {
+                  "color": "#94a3b8",
+                  "preset": "plastic_matte"
+                },
+                "name": "HairBack",
+                "position": [
+                  0,
+                  1.34,
+                  -0.1
+                ],
+                "shape": {
+                  "radius": 0.05,
+                  "size": [
+                    0.28,
+                    0.36,
+                    0.14
+                  ],
+                  "type": "roundedBox"
+                }
+              },
+              {
+                "allowOverlap": true,
+                "attachTo": "head",
+                "id": "horn_l",
+                "material": {
+                  "color": "#38bdf8",
+                  "preset": "metal_steel"
+                },
+                "name": "HornL",
+                "position": [
+                  -0.11,
+                  1.63,
+                  -0.05
+                ],
+                "rotation": [
+                  -30,
+                  -15,
+                  -15
+                ],
+                "shape": {
+                  "height": 0.2,
+                  "radius": 0.038,
+                  "type": "cone"
+                }
+              },
+              {
+                "allowOverlap": true,
+                "attachTo": "head",
+                "id": "horn_r",
+                "material": {
+                  "color": "#38bdf8",
+                  "preset": "metal_steel"
+                },
+                "name": "HornR",
+                "position": [
+                  0.11,
+                  1.63,
+                  -0.05
+                ],
+                "rotation": [
+                  -30,
+                  15,
+                  15
+                ],
+                "shape": {
+                  "height": 0.2,
+                  "radius": 0.038,
+                  "type": "cone"
+                }
+              },
+              {
+                "attachTo": "hips",
+                "id": "leg_l",
+                "material": {
+                  "color": "#0f172a",
+                  "preset": "fabric_cotton"
+                },
+                "name": "LegL",
+                "position": [
+                  -0.1,
+                  0.46,
+                  0
+                ],
+                "shape": {
+                  "length": 0.5,
+                  "radius": 0.065,
+                  "type": "capsule"
+                }
+              },
+              {
+                "attachTo": "leg_l",
+                "id": "boot_l",
+                "material": {
+                  "color": "#3b1e08",
+                  "preset": "leather"
+                },
+                "name": "BootL",
+                "position": [
+                  -0.1,
+                  0.09,
+                  0.02
+                ],
+                "shape": {
+                  "radius": 0.03,
+                  "size": [
+                    0.12,
+                    0.18,
+                    0.2
+                  ],
+                  "type": "roundedBox"
+                }
+              },
+              {
+                "attachTo": "hips",
+                "id": "leg_r",
+                "material": {
+                  "color": "#0f172a",
+                  "preset": "fabric_cotton"
+                },
+                "name": "LegR",
+                "position": [
+                  0.1,
+                  0.46,
+                  0
+                ],
+                "shape": {
+                  "length": 0.5,
+                  "radius": 0.065,
+                  "type": "capsule"
+                }
+              },
+              {
+                "attachTo": "leg_r",
+                "id": "boot_r",
+                "material": {
+                  "color": "#3b1e08",
+                  "preset": "leather"
+                },
+                "name": "BootR",
+                "position": [
+                  0.1,
+                  0.09,
+                  0.02
+                ],
+                "shape": {
+                  "radius": 0.03,
+                  "size": [
+                    0.12,
+                    0.18,
+                    0.2
+                  ],
+                  "type": "roundedBox"
+                }
+              },
+              {
+                "attachTo": "torso",
+                "id": "arm_l",
+                "material": {
+                  "color": "#1e3a8a",
+                  "preset": "fabric_cotton"
+                },
+                "name": "ArmL",
+                "position": [
+                  -0.24,
+                  1.12,
+                  0.03
+                ],
+                "rotation": [
+                  15,
+                  0,
+                  12
+                ],
+                "shape": {
+                  "length": 0.35,
+                  "radius": 0.05,
+                  "type": "capsule"
+                }
+              },
+              {
+                "attachTo": "arm_l",
+                "id": "claw_l",
+                "material": {
+                  "color": "#38bdf8",
+                  "preset": "metal_steel"
+                },
+                "name": "ClawL",
+                "position": [
+                  -0.28,
+                  0.88,
+                  0.07
+                ],
+                "shape": {
+                  "radius": 0.03,
+                  "size": [
+                    0.09,
+                    0.12,
+                    0.11
+                  ],
+                  "type": "roundedBox"
+                }
+              },
+              {
+                "attachTo": "torso",
+                "id": "arm_r",
+                "material": {
+                  "color": "#1e3a8a",
+                  "preset": "fabric_cotton"
+                },
+                "name": "ArmR",
+                "position": [
+                  0.24,
+                  1.12,
+                  0.03
+                ],
+                "rotation": [
+                  15,
+                  0,
+                  -12
+                ],
+                "shape": {
+                  "length": 0.35,
+                  "radius": 0.05,
+                  "type": "capsule"
+                }
+              },
+              {
+                "attachTo": "arm_r",
+                "id": "claw_r",
+                "material": {
+                  "color": "#38bdf8",
+                  "preset": "metal_steel"
+                },
+                "name": "ClawR",
+                "position": [
+                  0.28,
+                  0.88,
+                  0.07
+                ],
+                "shape": {
+                  "radius": 0.03,
+                  "size": [
+                    0.09,
+                    0.12,
+                    0.11
+                  ],
+                  "type": "roundedBox"
+                }
+              },
+              {
+                "attachTo": "hips",
+                "id": "tail",
+                "material": {
+                  "color": "#6366f1",
+                  "preset": "plastic_glossy"
+                },
+                "name": "DragonTail",
+                "shape": {
+                  "capped": true,
+                  "path": [
+                    [
+                      0,
+                      0.8,
+                      -0.1
+                    ],
+                    [
+                      0,
+                      0.68,
+                      -0.24
+                    ],
+                    [
+                      0,
+                      0.54,
+                      -0.42
+                    ],
+                    [
+                      0,
+                      0.44,
+                      -0.62
+                    ],
+                    [
+                      0,
+                      0.48,
+                      -0.76
+                    ]
+                  ],
+                  "radius": 0.05,
+                  "type": "tube"
+                }
+              },
+              {
+                "attachTo": "tail",
+                "id": "tail_crescent",
+                "material": {
+                  "color": "#38bdf8",
+                  "preset": "metal_steel"
+                },
+                "name": "TailCrescent",
+                "position": [
+                  0,
+                  0.5,
+                  -0.84
+                ],
+                "rotation": [
+                  0,
+                  90,
+                  30
+                ],
+                "shape": {
+                  "arc": 3.8,
+                  "radius": 0.11,
+                  "tube": 0.028,
+                  "type": "torus"
+                }
+              }
+            ],
+            "placement": "floor"
+          }
+        }
+      ],
+      "layer": 0,
+      "static": true
+    }
+  ]
+}
